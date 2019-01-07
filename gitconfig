@@ -1,0 +1,31 @@
+[user]
+  name = Igor Krasilnikov
+  email = igor.krasilnikov@danielwellington.com
+
+[core]
+  editor = nvim
+  excludesfile = /Users/igorkrasilnikov/.gitignore
+
+[push]
+  default = current
+
+[pull]
+  rebase = true
+
+[log]
+  date = relative
+
+[format]
+  pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cred%d %Creset%s %Cgreen%<(7)[%aN]
+
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge --skip -- %f
+	process = git-lfs filter-process --skip
+	required = true

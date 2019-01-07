@@ -1,0 +1,108 @@
+{
+    "workbench.sideBar.location": "right",
+    "window.zoomLevel": 2,
+    "telemetry.enableTelemetry": false,
+    "workbench.colorTheme": "Gruvbox Dark (Soft)",
+    "vim.leader": ",",
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.minimap.enabled": false,
+    "vim.disableExtension": false,
+    "explorer.openEditors.visible": 0,
+    "files.autoSave": "afterDelay",
+    "php.suggest.basic": false,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j", "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["z", "a"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.unfold",
+                }
+            ]
+        },
+        {
+            "before": ["z", "A"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.unfoldRecursively",
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "d"
+            ],
+            "after": [
+                "d", "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":nohl"
+                }
+            ]
+        },
+        {
+            "before": [
+                "Z", "Z"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":wq",
+                    "args": []
+                },
+            ]
+        },
+        {
+            "before": [
+                "v", "v"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.splitEditor",
+                    "args": []
+                }
+            ],
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "extensions.ignoreRecommendations": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "update.enableWindowsBackgroundUpdates": false,
+    "workbench.activityBar.visible": true,
+    "vim.foldfix": true,
+    "git.autofetch": true,
+    "editor.renderIndentGuides": false,
+    "editor.fontSize": 14,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "pomodoro.workTime": 15,
+    "searchRipgrep.enable": true,
+    "ruby.rubocop.executePath": "/Users/rajib.ahmed/.rbenv/shims/",
+}

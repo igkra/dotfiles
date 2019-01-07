@@ -1,0 +1,130 @@
+#defaults
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export CLICOLOR=1
+
+autoload -Uz compinit && compinit
+autoload -U promptinit && promptinit
+prompt pure
+
+if [ -z "$HISTFILE" ]; then
+  HISTFILE=$HOME/.zsh_history
+fi
+
+HISTSIZE=5000
+SAVEHIST=5000
+
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+
+eval "$(fasd --init auto )"
+eval "$(rbenv init -)"
+
+#GIT
+alias gs='git status'
+alias gcm='git commit -m'
+alias ga='git add'
+alias gl='git log --graph --abbrev-commit --decorate --date=relative --all'
+alias gco='git checkout'
+alias glc='git shortlog -s -n'
+
+alias pull='git pull --rebase'
+alias push='git push'
+
+#SYSTEM
+alias python=python3
+alias pip=pip3
+alias vim=/usr/local/bin/nvim
+alias _=sudo
+alias gz='tar -zcvf' #tar a folder
+alias ll='ls -lahGF'
+
+alias zl='source ~/.zshrc'
+alias ze='vim ~/.zshrc'
+
+#RAILS
+alias b='bundle'
+alias be='b exec'
+alias rs='rails s'
+alias rc='rails c'
+alias c='clear'
+alias :q='exit'
+alias rmf='rm -rf'
+alias tailf='tail -f'
+
+#FASD
+unalias z
+unalias zz
+
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias j='fasd_cd -d'     # cd, same functionality as j in autojump
+alias jj='fasd_cd -d -i' # cd with interactive selection
+
+#OFFICE
+alias jira='git fetch && git checkout --track $(git branch -r | fzf)'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
+export EDITOR=nvim
+export PATH=$HOME/dotfiles/bin:$PATH
+
+
+fpath=(~/.zsh/completion $fpath)
+fpath=(/usr/local/share/zsh-completions $fpath)
+. $(brew --prefix)/share/zsh/site-functions
+
+#IMPORT FILES
+source $HOME/dotfiles/zsh/functions
+[ -f $HOME/.zsh_profile ] && source $HOME/.zsh_profile
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
+export HOMEBREW_NO_ANALYTICS=1
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export ANDROID_HOME=/usr/local/share/android-sdk
+eval "$(direnv hook $SHELL)"
+
+# Disable auto-update for oh-my-zsh
+export DISABLE_AUTO_UPDATE=true
+
+#
+# Run 'nvm use' automatically every time there's 
+# a .nvmrc file in the directory. Also, revert to default 
+# version when entering a directory without .nvmrc
+#
+enter_directory() {
+if [[ $PWD == $PREV_PWD ]]; then
+    return
+fi
+
+PREV_PWD=$PWD
+if [[ -f ".nvmrc" ]]; then
+    nvm use
+    NVM_DIRTY=true
+elif [[ $NVM_DIRTY = true ]]; then
+    nvm use default
+    NVM_DIRTY=false
+fi
+}
+
+export PROMPT_COMMAND=enter_directory
